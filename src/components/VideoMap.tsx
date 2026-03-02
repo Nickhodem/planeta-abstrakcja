@@ -38,11 +38,15 @@ const VideoMap = () => {
       attributionControl: true,
     });
 
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: "abcd",
-      maxZoom: 19,
-    }).addTo(map);
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+      {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+        subdomains: "abcd",
+        maxZoom: 19,
+      },
+    ).addTo(map);
 
     const pins = getCountryPins();
 
@@ -79,7 +83,9 @@ const VideoMap = () => {
               Planeta Abstrakcja
             </h1>
             <p className="text-xs text-muted-foreground">
-              Mapa podróży · {getCountryPins().reduce((acc, p) => acc + p.videos.length, 0)} filmów · {getCountryPins().length} krajów
+              Mapa podróży ·{" "}
+              {getCountryPins().reduce((acc, p) => acc + p.videos.length, 0)}{" "}
+              filmów · {getCountryPins().length} krajów
             </p>
           </div>
         </div>
@@ -95,10 +101,17 @@ const VideoMap = () => {
             <div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                <h2 className="font-bold text-foreground text-lg">{selectedPin.country}</h2>
+                <h2 className="font-bold text-foreground text-lg">
+                  {selectedPin.country}
+                </h2>
               </div>
               <p className="text-xs text-muted-foreground mt-0.5">
-                {selectedPin.videos.length} {selectedPin.videos.length === 1 ? "film" : selectedPin.videos.length < 5 ? "filmy" : "filmów"}
+                {selectedPin.videos.length}{" "}
+                {selectedPin.videos.length === 1
+                  ? "film"
+                  : selectedPin.videos.length < 5
+                    ? "filmy"
+                    : "filmów"}
               </p>
             </div>
             <button
