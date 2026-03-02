@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import { getCountryPins, type CountryPin, type Video } from "@/data/videos";
 import { MapPin, Clock, Eye, ExternalLink, X } from "lucide-react";
 
@@ -56,6 +57,11 @@ const VideoMap = () => {
     });
 
     mapInstance.current = map;
+
+    // Force Leaflet to recalculate container size
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
 
     return () => {
       map.remove();
